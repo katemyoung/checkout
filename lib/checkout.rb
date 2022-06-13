@@ -1,3 +1,7 @@
+require "money"
+Money.default_currency = Money::Currency.new("GBP")
+I18n.config.available_locales = :en
+
 class Checkout
   @@products = [
     {
@@ -23,12 +27,20 @@ class Checkout
     @basket.push(@@products.select{ |element| element["Product code"] == item }[0])
   end
 
+  
+
   def total
-    sum = @basket.map { |element| element["Price"] }.sum
-    "£" + sum.to_s
+    Money.from_cents(total_in_pence).format
   end
+
+  private
 
   def basket
     @basket
+  end
+
+  def total_in_pence
+    sum = @basket.map { |element| element["Price"].*(100) }.sum
+    
   end
 end

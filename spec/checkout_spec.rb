@@ -2,30 +2,22 @@ require "checkout"
 
 RSpec.describe Checkout do
   describe "on initalization of a new checkout" do
-    it "is expected to accpet promitional rules as an argument" do
+    it "is expected to accept promotional rules as an argument" do
       expect(Checkout.itself).to respond_to(:new).with(1).argument
     end
+
     it "total is nil" do
       co = Checkout.new("promotional_rules")
       
-      expect(co.total).to eq(0)
+      expect(co.total).to eq("£0.00")
     end
   end
 
   describe "#scan" do
-    it "it accpets an item as an argument" do
+    it "it accepts an item as an argument" do
       co = Checkout.new("promotional_rules")
 
       expect(co).to respond_to(:scan).with(1).argument
-    end
-
-    it "adds scanned item to the basket" do
-      co = Checkout.new("promotional_rules")
-
-      co.scan(001)
-      co.scan(001)
-      
-      expect(co.basket).not_to eq([])
     end
   end
 
@@ -46,7 +38,18 @@ RSpec.describe Checkout do
 
       price = co.total
 
-      expect(price).to eq("£54.24")
+      expect(price).to eq("£54.25")
+    end
+
+    it "returns the total given one of each item 001 to 003 and no promotional rules" do
+      co = Checkout.new("promotional_rules")
+      co.scan(001)
+      co.scan(002)
+      co.scan(003)
+
+      price = co.total
+
+      expect(price).to eq("£74.20")
     end
   end
 end

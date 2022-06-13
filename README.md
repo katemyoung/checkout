@@ -60,5 +60,11 @@ Implement a checkout system that fulfils these requirements:
 ## How I approached this challenge
 
 - [x] Initiated repo with git and RSpec 
-- [ ] Used bundle to install "Standard" linter, and ran linter before every commit
-- 
+- [ ] Used bundle to install "Standard" linter, and ran linter before commits
+- [ ] Took a test-driven approach, working in small steps, guided by my error messages
+- [ ]
+
+
+### Notes:
+
+https://github.com/RubyMoney/money 
