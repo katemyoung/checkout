@@ -48,7 +48,8 @@ Implement a checkout system that fulfils these requirements:
 
 ```
 | Input (Basket)  | Output (Total price expected) | Status |
-| ---             | ---                           | ---    | 
+| ---             | ---                           | ---    |
+| 001             | £9.25                         | ---    | 
 | 001,002,003     | £66.78                        | ---    | 
 | 001,003,001     | £36.95                        | ---    |
 | 001,002,001,003 | £73.76                        | ---    | 
