@@ -16,19 +16,19 @@ class Checkout
   ]
 
   def initialize(promotional_rules)
+    @basket = []
   end
 
   def scan(item)
-    @@products.select{ |element| element["Product code"] == item }[0]
+    @basket.push(@@products.select{ |element| element["Product code"] == item }[0])
   end
 
   def total
-    # "£" + @@products["Price"].to_s
+    sum = @basket.map { |element| element["Price"] }.sum
+    "£" + sum.to_s
   end
-  
-  private 
 
   def basket
-   
+    @basket
   end
 end

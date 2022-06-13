@@ -5,6 +5,11 @@ RSpec.describe Checkout do
     it "is expected to accpet promitional rules as an argument" do
       expect(Checkout.itself).to respond_to(:new).with(1).argument
     end
+    it "total is nil" do
+      co = Checkout.new("promotional_rules")
+      
+      expect(co.total).to eq(0)
+    end
   end
 
   describe "#scan" do
@@ -14,12 +19,13 @@ RSpec.describe Checkout do
       expect(co).to respond_to(:scan).with(1).argument
     end
 
-    it "returns the item hash refered to by the product code" do
+    it "adds scanned item to the basket" do
       co = Checkout.new("promotional_rules")
 
-      scanned_item = co.scan(001)
+      co.scan(001)
+      co.scan(001)
       
-      expect(scanned_item).to eq({"Product code"=>1, "Name"=>"Lavender heart", "Price"=>9.25})
+      expect(co.basket).not_to eq([])
     end
   end
 
@@ -33,7 +39,7 @@ RSpec.describe Checkout do
       expect(price).to eq("£9.25")
     end
 
-    xit "returns the total given one 001 and one 002 item" do
+    it "returns the total given one 001 and one 002 item" do
       co = Checkout.new("promotional_rules")
       co.scan(001)
       co.scan(002)
