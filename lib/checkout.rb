@@ -1,11 +1,17 @@
 class Checkout
-  def initialize(promotional_rules) 
+  @@products = {
+    "Product code" => 001, 
+    "Name" => "Lavender heart",
+    "Price" => "£9.25"
+    }
+
+  def initialize(promotional_rules)
   end
 
   def scan(item)
   end
 
   def total
-    "£9.25"
+    @@products["Price"]
   end
 end

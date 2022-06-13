@@ -4,7 +4,7 @@ RSpec.describe Checkout do
   describe "on initalization of a new checkout" do
     it "is expected to accpet promitional rules as an argument" do
       expect(Checkout.itself).to respond_to(:new).with(1).argument
-    end 
+    end
   end
 
   describe "#scan" do
@@ -23,6 +23,15 @@ RSpec.describe Checkout do
       price = co.total
 
       expect(price).to eq("£9.25")
+    end
+    xit "returns the total given one 001 and one 002 item" do
+      co = Checkout.new("promotional_rules")
+      co.scan(001)
+      co.scan(002)
+
+      price = co.total
+
+      expect(price).to eq("£54.24")
     end
   end
 end
