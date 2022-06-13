@@ -15,4 +15,13 @@ RSpec.describe Checkout do
       expect(co).to respond_to(:scan).with(1).argument
     end
   end
+
+  describe "#total" do
+    it "exits as a method" do
+      promotional_rules = []
+      co = Checkout.new(promotional_rules)
+      
+      expect(co).to respond_to(:total)
+    end
+  end
 end
