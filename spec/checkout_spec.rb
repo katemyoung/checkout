@@ -8,11 +8,11 @@ RSpec.describe Checkout do
   end
 
   describe "#scan" do
-    it "it exists as a method" do
+    it "it accpets an item as an argument" do
       promotional_rules = []
       co = Checkout.new(promotional_rules)
 
-      expect(co).to respond_to(:scan)
+      expect(co).to respond_to(:scan).with(1).argument
     end
   end
 end
