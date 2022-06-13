@@ -1,5 +1,16 @@
 # Checkout CL app
 
+
+## How to run and test this application 
+
+
+### To run the linter (Standard)
+
+Run `bundle install` from the app's directory in the terminal to install the necessary gems.
+
+To lint the file, run `bundle exec standardrb`
+
+
 What we are looking for: functionality, efficiency, readability and tests.
 
 Use this test to demonstrate your understanding of Ruby, OO and TDD.
@@ -46,7 +57,8 @@ Implement a checkout system that fulfils these requirements/
 ```
 
 
-## How I apporached this challenge
+## How I approached this challenge
 
 - [x] Initiated repo with git and RSpec 
-
+- [ ] Used bundle to install "Standard" linter, and ran linter before every commit
+- 
