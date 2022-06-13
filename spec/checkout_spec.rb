@@ -9,19 +9,20 @@ RSpec.describe Checkout do
 
   describe "#scan" do
     it "it accpets an item as an argument" do
-      promotional_rules = []
-      co = Checkout.new(promotional_rules)
+      co = Checkout.new("promotional_rules")
 
       expect(co).to respond_to(:scan).with(1).argument
     end
   end
 
   describe "#total" do
-    it "exits as a method" do
-      promotional_rules = []
-      co = Checkout.new(promotional_rules)
-      
-      expect(co).to respond_to(:total)
+    it "returns the total given one 001 item" do
+      co = Checkout.new("promotional_rules")
+      co.scan(001)
+
+      price = co.total
+
+      expect(price).to eq("£9.25")
     end
   end
 end
