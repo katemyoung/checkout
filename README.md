@@ -3,13 +3,11 @@
 
 ## How to run and test this application 
 
-
 ### To run the linter (Standard)
 
 Run `bundle install` from the app's directory in the terminal to install the necessary gems.
 
 To lint the file, run `bundle exec standardrb`
-
 
 What we are looking for: functionality, efficiency, readability and tests.
 
