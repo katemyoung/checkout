@@ -2,4 +2,4 @@
 /coverage
 
 # RSpec 
-/spec/examples.txt
+./spec/examples.txt
