@@ -44,7 +44,7 @@ co.scan(item)
 co.scan(item)
 price = co.total
 ```
-Implement a checkout system that fulfils these requirements/
+Implement a checkout system that fulfils these requirements:
 
 ```
 | Input (Basket)  | Output (Total price expected) | Status |
