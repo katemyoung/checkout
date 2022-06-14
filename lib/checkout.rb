@@ -2,6 +2,8 @@ require "money"
 require_relative "../config/money.rb"
 
 class Checkout
+  attr_reader :current_promotions
+
   @@products = [
     {
       "Product code"=>001, 
@@ -18,8 +20,9 @@ class Checkout
     }
   ]
 
-  def initialize(promotional_rules)
+  def initialize(promotional_rules=[])
     @basket = []
+    @current_promotions = promotional_rules
   end
 
   def scan(item)
@@ -28,7 +31,7 @@ class Checkout
   end
 
   def total
-    Money.from_cents(total_in_pence).format
+    calculate_grand_total
   end
 
   private
@@ -41,7 +44,30 @@ class Checkout
     basket.push(scanned_item)
   end
 
-  def total_in_pence
-    sum = basket.map { |element| element["Price"].*(100) }.sum
+  def calculate_grand_total
+    total_before_discount = subtotal_in_pence #correct 7420
+    grand_total_in_pence = apply_relevent_promotions(total_before_discount) # this is not working ...
+    p "This is the grand_total_in_pence in #calculate_grand_total #{grand_total_in_pence}" 
+    format_grand_total(grand_total_in_pence)
+  end
+
+  def subtotal_in_pence
+    # p "#{basket} this is the basket at subtotal"
+    basket.map { |element| element["Price"]*100 }.sum # 7420 subtotal
+  end
+
+  def apply_relevent_promotions(total_before_discount)
+    # p "@current_promotions #{@current_promotions}"
+    # p "current_promotions #{current_promotions}"
+    # p "@current_promotions.include?(:ten_percent_off_over_60_pounds) #{@current_promotions.include?(:ten_percent_off_over_60_pounds)}"
+    if (@current_promotions.include?(:ten_percent_off_over_60_pounds) && total_before_discount >= 6000)
+      total_before_discount * 0.9
+    else
+      total_before_discount
+    end
+  end
+
+  def format_grand_total(total_in_pence)
+    Money.from_cents(total_in_pence).format
   end
 end

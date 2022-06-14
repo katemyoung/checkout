@@ -81,3 +81,4 @@ Implement a checkout system that fulfils these requirements:
 
 "Over 60 10% off" :over_60_10%
 "Lavender hearts bulk discount" :multiple_lavender_hearts
+Design decision: promotional rules should be passed as an array of symbols
