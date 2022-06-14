@@ -55,16 +55,14 @@ class Checkout
   end
 
   def apply_relevent_promotions(total_before_discount)
-    ## need to refactor this 
-    # if (@current_promotions.include?(:ten_percent_off_over_60_pounds) && @current_promotions.include?(:lavender_heart_multibuy)) 
-
-    elsif (@current_promotions.include?(:ten_percent_off_over_60_pounds) && total_before_discount >= 6000)
-      total_before_discount * 0.9
-    elsif (@current_promotions.include?(:lavender_heart_multibuy) && qty_lavender_hearts >= 2)
-      total_before_discount - (75 * qty_lavender_hearts)
-    else
-      total_before_discount
+    working_total = total_before_discount
+    if lavender_heart_multibuy_discount_applicable?
+      working_total = lavender_heart_multibuy_discount(total_before_discount)
     end
+    if ten_percent_off_over_60_pounds_applicable?(working_total)
+      working_total = ten_percent_off_over_60_pounds(working_total)
+    end
+    working_total
   end
 
   def format_grand_total(total_in_pence)
@@ -75,5 +73,21 @@ class Checkout
     count = 0
     basket.each {|item| count += 1 if item["Product code"] == 001 }
     count
+  end
+
+  def ten_percent_off_over_60_pounds(working_total)
+    working_total * 0.9
+  end
+
+  def lavender_heart_multibuy_discount(working_total)
+    working_total - (75 * qty_lavender_hearts)
+  end
+
+  def lavender_heart_multibuy_discount_applicable?
+    current_promotions.include?(:lavender_heart_multibuy) && qty_lavender_hearts >= 2
+  end
+
+  def ten_percent_off_over_60_pounds_applicable?(working_total)
+    current_promotions.include?(:ten_percent_off_over_60_pounds) && working_total >= 6000
   end
 end
