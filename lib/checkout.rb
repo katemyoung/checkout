@@ -1,22 +1,23 @@
 require "money"
+require "product"
 require_relative "../config/money"
 
 class Checkout
-  @@products = [
-    {
-      "Product code" => 001,
-      "Name" => "Lavender heart",
-      "Price" => 9.25
-    }, {
-      "Product code" => 002,
-      "Name" => "Personalised cufflinks",
-      "Price" => 45.0
-    }, {
-      "Product code" => 003,
-      "Name" => "Kids T-shirt",
-      "Price" => 19.95
-    }
-  ]
+  #@@products = [
+  #  {
+  #    "Product code" => 001,
+  #    "Name" => "Lavender heart",
+  #    "Price" => 9.25
+  #  }, {
+  #    "Product code" => 002,
+  #    "Name" => "Personalised cufflinks",
+  #    "Price" => 45.0
+  #  }, {
+  #    "Product code" => 003,
+  #    "Name" => "Kids T-shirt",
+  #    "Price" => 19.95
+  #  }
+  # ]
 
   def initialize(promotional_rules = [])
     @basket = []
@@ -24,7 +25,8 @@ class Checkout
   end
 
   def scan(item)
-    scanned_item = @@products.select { |element| element["Product code"] == item }[0] # Product.all 
+    # scanned_item = @@products.select { |element| element["Product code"] == item }[0] # Product.all 
+    scanned_item = Product.all.find { |product| product.code == item }
     add_to_basket(scanned_item)
   end
 

@@ -24,6 +24,7 @@ RSpec.describe Checkout do
 
   describe "#total" do
     it "returns the total given one 001 item" do
+      Product.new(001, "Lavender heart", 9.25)
       co = Checkout.new
       co.scan(001)
 
