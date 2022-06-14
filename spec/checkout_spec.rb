@@ -61,5 +61,18 @@ RSpec.describe Checkout do
         expect(price).to eq("£63.00")
       end
     end
+
+    describe "when passed the :lavender_heart_multibuy preomotional rule as an argument" do  
+      it "reduces the price of the lavender hearts from £9.25 to £8.50" do
+        promotional_rules = [:lavender_heart_multibuy]
+        co = Checkout.new(promotional_rules)
+        co.scan(001)
+        co.scan(001)
+         
+        price = co.total
+
+        expect(price).to eq("£17.00")
+      end
+    end
   end
 end

@@ -45,23 +45,23 @@ class Checkout
   end
 
   def calculate_grand_total
-    total_before_discount = subtotal_in_pence #correct 7420
-    grand_total_in_pence = apply_relevent_promotions(total_before_discount) # this is not working ...
-    p "This is the grand_total_in_pence in #calculate_grand_total #{grand_total_in_pence}" 
+    total_before_discount = subtotal_in_pence 
+    grand_total_in_pence = apply_relevent_promotions(total_before_discount)
     format_grand_total(grand_total_in_pence)
   end
 
   def subtotal_in_pence
-    # p "#{basket} this is the basket at subtotal"
-    basket.map { |element| element["Price"]*100 }.sum # 7420 subtotal
+    basket.map { |element| element["Price"]*100 }.sum
   end
 
   def apply_relevent_promotions(total_before_discount)
-    # p "@current_promotions #{@current_promotions}"
-    # p "current_promotions #{current_promotions}"
-    # p "@current_promotions.include?(:ten_percent_off_over_60_pounds) #{@current_promotions.include?(:ten_percent_off_over_60_pounds)}"
-    if (@current_promotions.include?(:ten_percent_off_over_60_pounds) && total_before_discount >= 6000)
+    ## need to refactor this 
+    # if (@current_promotions.include?(:ten_percent_off_over_60_pounds) && @current_promotions.include?(:lavender_heart_multibuy)) 
+
+    elsif (@current_promotions.include?(:ten_percent_off_over_60_pounds) && total_before_discount >= 6000)
       total_before_discount * 0.9
+    elsif (@current_promotions.include?(:lavender_heart_multibuy) && qty_lavender_hearts >= 2)
+      total_before_discount - (75 * qty_lavender_hearts)
     else
       total_before_discount
     end
@@ -69,5 +69,11 @@ class Checkout
 
   def format_grand_total(total_in_pence)
     Money.from_cents(total_in_pence).format
+  end
+
+  def qty_lavender_hearts
+    count = 0
+    basket.each {|item| count += 1 if item["Product code"] == 001 }
+    count
   end
 end

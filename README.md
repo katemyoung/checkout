@@ -1,7 +1,20 @@
 # Checkout CL app
 
+Test coverage: []%
 
 ## How to run and test this application 
+
+**Available discounts:**
+
+When creating a new checkout, you can select which promotions you wish to apply 
+by passing the desired promotions in as an array of symbols.
+If you don't wish to apply any discount, leave the argument blank.
+
+
+:ten_percent_off_over_60_pounds - 
+:lavender_heart_multibuy - 
+
+e.g.
 
 
 Run `bundle install` from the app's directory in the terminal to install the necessary gems.
@@ -50,13 +63,13 @@ price = co.total
 Implement a checkout system that fulfils these requirements:
 
 ```
-| Input (Basket)  | Output (Total price expected) | Status |
-| ---             | ---                           | ---    |
-| 001             | £9.25                         | ---    | 
-| 001,002         | £54.24                        | ---    |
-| 001,002,003     | £66.78                        | ---    | 
-| 001,003,001     | £36.95                        | ---    |
-| 001,002,001,003 | £73.76                        | ---    | 
+| Input (Basket)  | Output (Total price expected) | Status      |
+| ---             | ---                           | ---         |
+| 001             | £9.25                         | Implemented | 
+| 001,002         | £54.24                        | Implemented |
+| 001,002,003     | £66.78                        | Implemented | 
+| 001,003,001     | £36.95                        | Implemented |
+| 001,002,001,003 | £73.76                        | Pending     | 
 ```
 
 

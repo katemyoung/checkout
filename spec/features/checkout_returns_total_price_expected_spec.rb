@@ -12,4 +12,29 @@ RSpec.describe "checkout" do
 
     expect(price).to eq("£66.78")
   end
+
+  it "returns expected price give two lavender hearts and when the lavender heart multibuy discount is applied" do
+    promotional_rules = [:lavender_heart_multibuy]
+    co = Checkout.new(promotional_rules)
+    co.scan(001)
+    co.scan(003)
+    co.scan(001)
+
+    price = co.total
+
+    expect(price).to eq("£36.95")
+  end
+
+  it "returns expected price when both discounts are applicable" do
+    promotional_rules = [:lavender_heart_multibuy, :ten_percent_off_over_60_pounds]
+    co = Checkout.new(promotional_rules)
+    co.scan(001)
+    co.scan(002)
+    co.scan(001)
+    co.scan(003)
+
+    price = co.total
+
+    expect(price).to eq("£73.76")
+  end
 end
