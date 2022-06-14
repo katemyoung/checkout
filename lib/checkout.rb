@@ -4,27 +4,27 @@ require_relative "../config/money"
 class Checkout
   @@products = [
     {
-      "Product code"=>001, 
-      "Name"=>"Lavender heart", 
-      "Price"=>9.25
+      "Product code" => 001,
+      "Name" => "Lavender heart",
+      "Price" => 9.25
     }, {
-      "Product code"=>002,
-      "Name"=>"Personalised cufflinks",
-      "Price"=>45.0
+      "Product code" => 002,
+      "Name" => "Personalised cufflinks",
+      "Price" => 45.0
     }, {
-      "Product code"=>003,
-      "Name"=>"Kids T-shirt",
-      "Price"=>19.95
+      "Product code" => 003,
+      "Name" => "Kids T-shirt",
+      "Price" => 19.95
     }
   ]
 
-  def initialize(promotional_rules=[])
+  def initialize(promotional_rules = [])
     @basket = []
     @current_promotions = promotional_rules
   end
 
   def scan(item)
-    scanned_item = @@products.select{ |element| element["Product code"] == item }[0]
+    scanned_item = @@products.select { |element| element["Product code"] == item }[0]
     add_to_basket(scanned_item)
   end
 
@@ -34,26 +34,22 @@ class Checkout
 
   private
 
-  def basket
-    @basket
-  end
+  attr_reader :basket
 
-  def current_promotions
-    @current_promotions
-  end
+  attr_reader :current_promotions
 
   def add_to_basket(scanned_item)
     basket.push(scanned_item)
   end
 
   def calculate_grand_total
-    total_before_discount = subtotal_in_pence 
+    total_before_discount = subtotal_in_pence
     grand_total_in_pence = apply_relevent_promotions(total_before_discount)
     format_grand_total(grand_total_in_pence)
   end
 
   def subtotal_in_pence
-    basket.map { |element| element["Price"]*100 }.sum
+    basket.map { |element| element["Price"] * 100 }.sum
   end
 
   def apply_relevent_promotions(total_before_discount)
@@ -69,7 +65,7 @@ class Checkout
 
   def qty_lavender_hearts
     count = 0
-    basket.each {|item| count += 1 if item["Product code"] == 001 }
+    basket.each { |item| count += 1 if item["Product code"] == 001 }
     count
   end
 
