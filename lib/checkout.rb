@@ -1,9 +1,7 @@
 require "money"
-require_relative "../config/money.rb"
+require_relative "../config/money"
 
 class Checkout
-  attr_reader :current_promotions
-
   @@products = [
     {
       "Product code"=>001, 
@@ -40,6 +38,10 @@ class Checkout
     @basket
   end
 
+  def current_promotions
+    @current_promotions
+  end
+
   def add_to_basket(scanned_item)
     basket.push(scanned_item)
   end
@@ -56,12 +58,8 @@ class Checkout
 
   def apply_relevent_promotions(total_before_discount)
     working_total = total_before_discount
-    if lavender_heart_multibuy_discount_applicable?
-      working_total = lavender_heart_multibuy_discount(total_before_discount)
-    end
-    if ten_percent_off_over_60_pounds_applicable?(working_total)
-      working_total = ten_percent_off_over_60_pounds(working_total)
-    end
+    working_total = apply_lavender_heart_multibuy_discount(total_before_discount) if lavender_heart_multibuy_discount_applicable?
+    working_total = apply_ten_percent_off_over_60_pounds(working_total) if ten_percent_off_over_60_pounds_applicable?(working_total)
     working_total
   end
 
@@ -75,11 +73,11 @@ class Checkout
     count
   end
 
-  def ten_percent_off_over_60_pounds(working_total)
+  def apply_ten_percent_off_over_60_pounds(working_total)
     working_total * 0.9
   end
 
-  def lavender_heart_multibuy_discount(working_total)
+  def apply_lavender_heart_multibuy_discount(working_total)
     working_total - (75 * qty_lavender_hearts)
   end
 

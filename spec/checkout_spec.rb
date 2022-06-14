@@ -7,16 +7,9 @@ RSpec.describe Checkout do
     end
 
     it "total is nil" do
-      co = Checkout.new()
+      co = Checkout.new
       
       expect(co.total).to eq("£0.00")
-    end
-
-    it "stores promotional rules when passed them as an arguemnt" do
-      promotional_rules = [:ten_percent_off_over_60_pounds]
-      co = Checkout.new(promotional_rules)
-      
-      expect(co).to respond_to(:current_promotions)
     end
   end
 
@@ -32,7 +25,7 @@ RSpec.describe Checkout do
 
   describe "#total" do
     it "returns the total given one 001 item" do
-      co = Checkout.new()
+      co = Checkout.new
       co.scan(001)
 
       price = co.total
@@ -41,7 +34,7 @@ RSpec.describe Checkout do
     end
 
     it "returns the total given one 001 and one 002 item" do
-      co = Checkout.new()
+      co = Checkout.new
       co.scan(001)
       co.scan(002)
 
@@ -50,7 +43,7 @@ RSpec.describe Checkout do
       expect(price).to eq("£54.25")
     end
 
-    describe "when passed the ten_percent_off_over_60_pounds preomotional rule as an argument" do  
+    describe "when passed the ten_percent_off_over_60_pounds promotional rule as an argument" do  
       it "applies 10% discount to a basekt subtotal of £70" do
         promotional_rules = [:ten_percent_off_over_60_pounds]
         co = Checkout.new(promotional_rules)
