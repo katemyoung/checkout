@@ -1,6 +1,5 @@
 require "money"
-Money.default_currency = Money::Currency.new("GBP")
-I18n.config.available_locales = :en
+require_relative "../config/money.rb"
 
 class Checkout
   @@products = [
@@ -24,10 +23,9 @@ class Checkout
   end
 
   def scan(item)
-    @basket.push(@@products.select{ |element| element["Product code"] == item }[0])
+    scanned_item = @@products.select{ |element| element["Product code"] == item }[0]
+    add_to_basket(scanned_item)
   end
-
-  
 
   def total
     Money.from_cents(total_in_pence).format
@@ -39,8 +37,11 @@ class Checkout
     @basket
   end
 
+  def add_to_basket(scanned_item)
+    basket.push(scanned_item)
+  end
+
   def total_in_pence
-    sum = @basket.map { |element| element["Price"].*(100) }.sum
-    
+    sum = basket.map { |element| element["Price"].*(100) }.sum
   end
 end

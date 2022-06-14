@@ -1,7 +1,7 @@
 require "checkout"
 
 RSpec.describe "checkout" do
-  it "returns expected price give one of each item" do
+  it "returns expected price give one of each item and >£60 10% discount" do
     promotional_rules = []
     co = Checkout.new(promotional_rules)
     co.scan(001)

@@ -3,9 +3,12 @@
 
 ## How to run and test this application 
 
-### To run the linter (Standard)
 
 Run `bundle install` from the app's directory in the terminal to install the necessary gems.
+
+
+
+### To run the linter (Standard)
 
 To lint the file, run `bundle exec standardrb`
 
@@ -67,4 +70,14 @@ Implement a checkout system that fulfils these requirements:
 
 ### Notes:
 
-https://github.com/RubyMoney/money 
+- refactor products into own class
+- refactor methods to make more readable
+- refactor test suite to isolate / decouple
+- update readme how to run
+- subtotal function for over 60% function
+- count items function for lavender hearts
+- provisional basket (pre-discount basket)
+- which order should promotions run in? lavendar hearts before over 60
+
+"Over 60 10% off" :over_60_10%
+"Lavender hearts bulk discount" :multiple_lavender_hearts
