@@ -22,5 +22,12 @@ RSpec.describe Product do
   end
 
   describe ".all" do
+    it "returns an array of all products" do
+      Product.new(001, "Lavender heart", 9.25)
+
+      all_products = Product.all
+
+      expect(all_products).to be_an(Array)
+    end
   end
 end

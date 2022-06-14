@@ -24,7 +24,7 @@ class Checkout
   end
 
   def scan(item)
-    scanned_item = @@products.select { |element| element["Product code"] == item }[0]
+    scanned_item = @@products.select { |element| element["Product code"] == item }[0] # Product.all 
     add_to_basket(scanned_item)
   end
 
@@ -34,9 +34,7 @@ class Checkout
 
   private
 
-  attr_reader :basket
-
-  attr_reader :current_promotions
+  attr_reader :basket, :current_promotions
 
   def add_to_basket(scanned_item)
     basket.push(scanned_item)
