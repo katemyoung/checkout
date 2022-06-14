@@ -74,9 +74,9 @@ Implement a checkout system that fulfils these requirements:
 ## How I approached this challenge
 
 - [x] Initiated repo with git and RSpec 
-- [ ] Used bundle to install "Standard" linter, and ran linter before commits
-- [ ] Took a test-driven approach, working in small steps, guided by my error messages
-- [ ]
+- [x] Used bundle to install "Standard" linter for code quality
+- [x] Took a test-driven approach, working in small steps, guided by my error messages
+- [x] Refactored to short, readable methods using Single Responsibility Principle
 
 
 ### Notes:
