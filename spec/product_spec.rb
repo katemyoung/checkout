@@ -8,12 +8,12 @@ RSpec.describe Product do
       expect(product.code).to eq(001)
     end
 
-    xit "is expected to accept name as an arguments" do
+    it "is expected to accept name as an arguments" do
       product = Product.new(001, "Lavender heart", 9.25)
 
       expect(product.name).to eq("Lavender heart")
     end
-    
+
     xit "is expected to accept procee as an arguments" do
       product = Product.new(001, "Lavender heart", 9.25)
 
