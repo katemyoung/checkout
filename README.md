@@ -10,7 +10,7 @@ The challenge was to create a checkout for an online marketplace which offers pr
 
 1. In your terminal, make a local copy of this repo using `git clone https://github.com/katemyoung/checkout.git`
 
-2. Navigate to the main directory of your new checkout repo and run `bundle install` to install the required gems.
+2. Navigate to the main directory of your new checkout repo using `cd checkout` and run `bundle install` to install the required gems.
 
 3. Open a new irb REPL and require the app using `irb -r ./lib/product.rb`.
 
