@@ -24,9 +24,9 @@ RSpec.describe Checkout do
 
   describe "#total" do
     it "returns the total given one 001 item" do
-      Product.new(001, "Lavender heart", 9.25)
+      Product.new(0o01, "Lavender heart", 9.25)
       co = Checkout.new
-      co.scan(001)
+      co.scan(0o01)
 
       price = co.total
 
@@ -34,9 +34,11 @@ RSpec.describe Checkout do
     end
 
     it "returns the total given one 001 and one 002 item" do
+      Product.new(0o01, "Lavender heart", 9.25)
+      Product.new(0o02, "Personalised cufflinks", 45.00)
       co = Checkout.new
-      co.scan(001)
-      co.scan(002)
+      co.scan(0o01)
+      co.scan(0o02)
 
       price = co.total
 
@@ -57,10 +59,12 @@ RSpec.describe Checkout do
 
     describe "when passed the :lavender_heart_multibuy preomotional rule as an argument" do
       it "reduces the price of the lavender hearts from £9.25 to £8.50" do
+        Product.new(0o01, "Lavender heart", 9.25)
+        Product.new(0o02, "Personalised cufflinks", 45.00)
         promotional_rules = [:lavender_heart_multibuy]
         co = Checkout.new(promotional_rules)
-        co.scan(001)
-        co.scan(001)
+        co.scan(0o01)
+        co.scan(0o01)
 
         price = co.total
 

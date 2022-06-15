@@ -4,6 +4,12 @@ Test coverage: []%
 
 ## How to run and test this application 
 
+```
+Product.new(001, "Lavender heart", 9.25)
+Product.new(002, "Personalised cufflinks", 45.00)
+Product.new(003, "Kids T-shirt", 19.95)
+```
+
 **Available discounts:**
 
 When creating a new checkout, you can select which promotions you wish to apply 
