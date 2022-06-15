@@ -1,8 +1,23 @@
 # Checkout CL app
 
-Test coverage: []%
+This is a small Ruby command line app that I created as part of a tech test for a junior developer role.
 
-## How to run and test this application 
+The challenge was to create a checkout for an online marketplace which offers promotions at point of sale.
+
+**Test coverage: 100% (SimpleCov)**
+
+## How to run this application
+
+1. In your terminal, make a local copy of this repo using `git clone https://github.com/katemyoung/checkout.git`
+
+2. Navigate to the main directory of your new checkout repo and run `bundle install` to install the required gems.
+
+3. Open a new irb REPL and require the app using `irb -r ./lib/product.rb`.
+
+4. Create some product objects for the online marketplace using the following syntax: `Product.new(product code, name, price)`,
+ e.g `Product.new(001, "Lavender heart", 9.25)`
+
+To create a set of sample products, paste the following code into the irb REPL:
 
 ```
 Product.new(001, "Lavender heart", 9.25)
@@ -10,92 +25,40 @@ Product.new(002, "Personalised cufflinks", 45.00)
 Product.new(003, "Kids T-shirt", 19.95)
 ```
 
-**Available discounts:**
+5. Create a new checkout using `co = Checkout.new(promotional_rules)`, passing it some promotional rules as an argument.
+The following promotional rules are available, and need to be passed in symbol form. You can pass in one promotion, both or none!
+- If you spend over £60, then you get 10% off your purchase. `:ten_percent_off_over_60_pounds`
+- If you buy 2 or more lavender hearts, then the price drops to £8.50. `:lavender_heart_multibuy`
+-  If you don't want to apply any promotional rules, you can simply leave them out e.g. `co = Checkout.new`
 
-When creating a new checkout, you can select which promotions you wish to apply 
-by passing the desired promotions in as an array of symbols.
-If you don't wish to apply any discount, leave the argument blank.
+6. You are now ready to `scan` some items in your checkout and find out the `total` price. Use the following code, and passing in the product code of each item e.g. 
 
+```
+co.scan(001)
+co.scan(002)
+price = co.total
+```
 
-:ten_percent_off_over_60_pounds - 
-:lavender_heart_multibuy - 
+## How to test this application
 
-e.g.
-
-
-Run `bundle install` from the app's directory in the terminal to install the necessary gems.
-
+1. Having used `bundle install` to install the required gems, you can run the RSpec test suite from the app's main directory using the `rsepc` command.
 
 
 ### To run the linter (Standard)
 
 To lint the file, run `bundle exec standardrb`
 
-What we are looking for: functionality, efficiency, readability and tests.
-
-Use this test to demonstrate your understanding of Ruby, OO and TDD.
-
-- [ ] Use git to version control the code
-- [ ] Avoid using any scaffolding tools
-- [ ] Use a code formatter or linter
-- [ ] Write unit tests where applicable
-- [ ] Include instructions in a README on how to run the application and how to run the tests. 
-
-## Specification
-
-Our client is an online marketplace, here is a sample of some of the products available on our site:
-
-| Product code | Name                    | Price |
-| ---          | ---                     | ---     |
-| 001          | Lavender heart          | £9.25   |
-| 002          | Personalised cufflinks  | £45.00  |
-| 003          | Kids T-shirt            | £19.95  |
-
-
-Our marketing team want to offer promotions as an incentive for our customers to purchase these items.
-
-If you spend over £60, then you get 10% off your purchase.
-If you buy 2 or more lavender hearts, then the price drops to £8.50.
-Our check-out scans items in any order, and because our promotion will change, 
-  it needs to be flexible regarding our promotional rules.
-The interface to our checkout looks like this (shown in Ruby):
-
-```
-co = Checkout.new(promotional_rules)
-co.scan(item)
-co.scan(item)
-price = co.total
-```
-Implement a checkout system that fulfils these requirements:
-
-```
-| Input (Basket)  | Output (Total price expected) | Status      |
-| ---             | ---                           | ---         |
-| 001,002,003     | £66.78                        | Implemented | 
-| 001,003,001     | £36.95                        | Implemented |
-| 001,002,001,003 | £73.76                        | Implemented | 
-```
-
 
 ## How I approached this challenge
 
 - [x] Initiated repo with git and RSpec 
-- [x] Used bundle to install "Standard" linter for code quality
+- [x] Used bundler to install necessary gems for convenience
 - [x] Took a test-driven approach, working in small steps, guided by my error messages
 - [x] Refactored to short, readable methods using Single Responsibility Principle
+- [x] Refactored the responsibility for storing products details to a new class, Product
+following the Separation of Concerns principle.
 
+## What I might do next 
 
-### Notes:
-
-- refactor products into own class
-- refactor methods to make more readable
-- refactor test suite to isolate / decouple
-- update readme how to run
-- subtotal function for over 60% function
-- count items function for lavender hearts
-- provisional basket (pre-discount basket)
-- which order should promotions run in? lavendar hearts before over 60
-
-"Over 60 10% off" :over_60_10%
-"Lavender hearts bulk discount" :multiple_lavender_hearts
-Design decision: promotional rules should be passed as an array of symbols
+If I continued working on this app, I might refactor the promotional rules into their own class.
+I would also continue working on refactoring the test suite, to try and use test doubles and FactoryBot. 
