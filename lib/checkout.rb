@@ -1,5 +1,5 @@
 require "money"
-require "product"
+require_relative "./product"
 require_relative "../config/money"
 
 class Checkout

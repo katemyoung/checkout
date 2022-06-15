@@ -14,7 +14,7 @@ RSpec.describe Product do
       expect(product.name).to eq("Lavender heart")
     end
 
-    it "is expected to accept procee as an arguments" do
+    it "is expected to accept price as an arguments" do
       product = Product.new(0o01, "Lavender heart", 9.25)
 
       expect(product.price).to eq(9.25)
