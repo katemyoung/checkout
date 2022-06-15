@@ -12,7 +12,7 @@ The challenge was to create a checkout for an online marketplace which offers pr
 
 2. Navigate to the main directory of your new checkout repo using `cd checkout` and run `bundle install` to install the required gems.
 
-3. Open a new irb REPL and require the app using `irb -r ./lib/product.rb`.
+3. Open a new irb REPL and require the app using `irb -r ./lib/checkout.rb`.
 
 4. Create some product objects for the online marketplace using the following syntax: `Product.new(product code, name, price)`,
  e.g `Product.new(001, "Lavender heart", 9.25)`
