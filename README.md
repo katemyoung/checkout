@@ -25,8 +25,8 @@ Product.new(002, "Personalised cufflinks", 45.00)
 Product.new(003, "Kids T-shirt", 19.95)
 ```
 
-5. Create a new checkout using `co = Checkout.new(promotional_rules)`, passing it some promotional rules as an argument.
-The following promotional rules are available, and need to be passed in symbol form. You can pass in one promotion, both or none!
+5. Create a new checkout using `co = Checkout.new(promotional_rules)`, passing it some promotional rules as an argument, e.g. `co = Checkout.new([:ten_percent_off_over_60_pounds, :lavender_heart_multibuy])`
+The following promotional rules are available, and need to be passed as an array of symbols. You can pass in one promotion, both or none!
 - If you spend over £60, then you get 10% off your purchase. `:ten_percent_off_over_60_pounds`
 - If you buy 2 or more lavender hearts, then the price drops to £8.50. `:lavender_heart_multibuy`
 -  If you don't want to apply any promotional rules, you can simply leave them out e.g. `co = Checkout.new`
@@ -60,5 +60,6 @@ following the Separation of Concerns principle.
 
 ## What I might do next 
 
-If I continued working on this app, I might refactor the promotional rules into their own class.
-I would also continue working on refactoring the test suite, to try and use test doubles and FactoryBot. 
+- [ ] If I continued working on this app, I might refactor the promotional rules into their own class,
+and so they did not have to be passed in as an array.
+- [ ] I would also continue working on refactoring the test suite, to try and use test doubles and FactoryBot. 
